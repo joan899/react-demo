@@ -1,10 +1,9 @@
-name: CI/CD Pipeline for React App
+name: CI Pipeline for React App
 
 on:
-  push:
+  pull_request:
     branches:
-      - develop  # Se ejecuta CI cuando se hace push en la rama develop
-      - main     # Se realiza el deploy cuando se hace push en la rama main
+      - develop  # Se ejecuta CI cuando hay un PR hacia la rama develop
 
 jobs:
   build:

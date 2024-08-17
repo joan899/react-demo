@@ -9,7 +9,7 @@ on:
       - main  # Se realiza el deploy cuando se hace merge en la rama main
 env:
   EC2_PUBLIC_IP: ${{ vars.EC2_PUBLIC_IP }}
-  FALCON: ${{ secrets.EC2_PEM_FILE }}
+  EC2_PEM_FILE: ${{ secrets.EC2_PEM_FILE }}
 
 jobs:
   build:

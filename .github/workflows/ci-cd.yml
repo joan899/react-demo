@@ -7,6 +7,8 @@ on:
   push:
     branches:
       - main  # Se realiza el deploy cuando se hace merge en la rama main
+env:
+  EC2_PUBLIC_IP: ${{ vars.EC2_PUBLIC_IP }}
 
 jobs:
   build:
@@ -34,10 +36,11 @@ jobs:
         run: |
           echo "${{ secrets.EC2_PEM_FILE }}" > ec2-key.pem
           chmod 600 ec2-key.pem
+          cat ec2-key.pem
 
       - name: Create temp directory
         run: |
-          echo "{{ vars.EC2_PUBLIC_IP }}"
+          echo "{{ env.EC2_PUBLIC_IP }}"
           ssh -i ec2-key.pem ec2-user@{{ vars.EC2_PUBLIC_IP }} 'sudo mkdir /home/ec2-user/temp_build/'
 
       - name: Copy Files to EC2 Temporary Directory

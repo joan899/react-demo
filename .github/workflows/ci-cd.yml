@@ -58,6 +58,7 @@ jobs:
 
       - name: Move Files to NGINX Directory
         run: |
+          ssh -o StrictHostKeyChecking=no -i ec2-key.pem ec2-user@${{ env.EC2_PUBLIC_IP }} 'sudo rm -rf /usr/share/nginx/html/*'
           ssh -o StrictHostKeyChecking=no -i ec2-key.pem ec2-user@${{ env.EC2_PUBLIC_IP }} 'sudo mv /home/ec2-user/temp_build/* /usr/share/nginx/html/'
 
       - name: Restart NGINX
